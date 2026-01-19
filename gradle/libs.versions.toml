@@ -3,7 +3,7 @@ kotlin = "2.3.0"
 ksp = "2.3.4"
 
 #noinspection UnusedVersionCatalogEntry
-jvm = "23"
+jvm = "17"
 agp = "8.13.2"
 
 room = "2.8.4"

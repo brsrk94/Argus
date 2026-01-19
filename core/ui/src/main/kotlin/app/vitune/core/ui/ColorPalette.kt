@@ -61,6 +61,136 @@ val defaultDarkPalette = ColorPalette(
     isDark = true
 )
 
+val floralLightPalette = ColorPalette(
+    background0 = Color(0xfffff9fb),
+    background1 = Color(0xfffce4ec),
+    background2 = Color(0xfff8bbd0),
+    text = Color(0xff4a148c),
+    textSecondary = Color(0xff880e4f),
+    textDisabled = Color(0xffad1457),
+    accent = Color(0xffec407a),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = false
+)
+
+val floralDarkPalette = ColorPalette(
+    background0 = Color(0xff2d1a22),
+    background1 = Color(0xff3d242d),
+    background2 = Color(0xff4d2e38),
+    text = Color(0xfff8bbd0),
+    textSecondary = Color(0xfff48fb1),
+    textDisabled = Color(0xffad1457),
+    accent = Color(0xffec407a),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = true
+)
+
+val oceanLightPalette = ColorPalette(
+    background0 = Color(0xffe3f2fd),
+    background1 = Color(0xffbbdefb),
+    background2 = Color(0xff90caf9),
+    text = Color(0xff01579b),
+    textSecondary = Color(0xff0277bd),
+    textDisabled = Color(0xff0288d1),
+    accent = Color(0xff03a9f4),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = false
+)
+
+val oceanDarkPalette = ColorPalette(
+    background0 = Color(0xff0d1b2a),
+    background1 = Color(0xff1b263b),
+    background2 = Color(0xff415a77),
+    text = Color(0xffe0e1dd),
+    textSecondary = Color(0xff778da9),
+    textDisabled = Color(0xff415a77),
+    accent = Color(0xff00b4d8),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = true
+)
+
+val forestLightPalette = ColorPalette(
+    background0 = Color(0xfff1f8e9),
+    background1 = Color(0xffdcedc8),
+    background2 = Color(0xffc5e1a5),
+    text = Color(0xff33691e),
+    textSecondary = Color(0xff558b2f),
+    textDisabled = Color(0xff689f38),
+    accent = Color(0xff8bc34a),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = false
+)
+
+val forestDarkPalette = ColorPalette(
+    background0 = Color(0xff1a2e1a),
+    background1 = Color(0xff2d4a2d),
+    background2 = Color(0xff3d5a3d),
+    text = Color(0xffc5e1a5),
+    textSecondary = Color(0xffaed581),
+    textDisabled = Color(0xff689f38),
+    accent = Color(0xff8bc34a),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = true
+)
+
+val sunsetLightPalette = ColorPalette(
+    background0 = Color(0xfffff3e0),
+    background1 = Color(0xffffe0b2),
+    background2 = Color(0xffffcc80),
+    text = Color(0xffe65100),
+    textSecondary = Color(0xfff57c00),
+    textDisabled = Color(0xfffb8c00),
+    accent = Color(0xffff9800),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = false
+)
+
+val sunsetDarkPalette = ColorPalette(
+    background0 = Color(0xff2a1810),
+    background1 = Color(0xff3d2418),
+    background2 = Color(0xff4d3020),
+    text = Color(0xffffcc80),
+    textSecondary = Color(0xffffb74d),
+    textDisabled = Color(0xfffb8c00),
+    accent = Color(0xffff9800),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = true
+)
+
+val cherryBlossomLightPalette = ColorPalette(
+    background0 = Color(0xfffff5f7),
+    background1 = Color(0xffffe4e9),
+    background2 = Color(0xffffd4dd),
+    text = Color(0xff4a1942),
+    textSecondary = Color(0xff8b4789),
+    textDisabled = Color(0xffc084bd),
+    accent = Color(0xffff6b9d),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = false
+)
+
+val cherryBlossomDarkPalette = ColorPalette(
+    background0 = Color(0xff1a0f18),
+    background1 = Color(0xff2d1a2a),
+    background2 = Color(0xff3d2538),
+    text = Color(0xffffd4dd),
+    textSecondary = Color(0xffffb3c6),
+    textDisabled = Color(0xffc084bd),
+    accent = Color(0xffff6b9d),
+    onAccent = Color.White,
+    isDefault = false,
+    isDark = true
+)
+
 private fun lightColorPalette(accent: Hsl) = lightColorPalette(
     hue = accent.hue,
     saturation = accent.saturation
@@ -169,6 +299,11 @@ fun accentColorOf(
         ?: defaultAccentColor
 
     ColorSource.MaterialYou -> materialAccentColor?.hsl ?: defaultAccentColor
+    ColorSource.Floral -> Color(0xffec407a).hsl
+    ColorSource.Ocean -> Color(0xff03a9f4).hsl
+    ColorSource.Forest -> Color(0xff8bc34a).hsl
+    ColorSource.Sunset -> Color(0xffff9800).hsl
+    ColorSource.CherryBlossom -> Color(0xffff6b9d).hsl
 }
 
 fun dynamicAccentColorOf(
@@ -224,6 +359,18 @@ fun ColorPalette.amoled() = if (isDark) {
     )
 } else this
 
+fun ColorPalette.withDarkness(darkness: Darkness) = if (isDark) {
+    when (darkness) {
+        Darkness.Normal -> this
+        Darkness.AMOLED -> amoled()
+        Darkness.PureBlack -> copy(
+            background0 = Color.Black,
+            background1 = Color.Black,
+            background2 = Color.Black
+        )
+    }
+} else this
+
 fun colorPaletteOf(
     source: ColorSource,
     darkness: Darkness,
@@ -231,6 +378,15 @@ fun colorPaletteOf(
     materialAccentColor: Color?,
     sampleBitmap: Bitmap?
 ): ColorPalette {
+    when (source) {
+        ColorSource.Floral -> return if (isDark) floralDarkPalette.withDarkness(darkness) else floralLightPalette
+        ColorSource.Ocean -> return if (isDark) oceanDarkPalette.withDarkness(darkness) else oceanLightPalette
+        ColorSource.Forest -> return if (isDark) forestDarkPalette.withDarkness(darkness) else forestLightPalette
+        ColorSource.Sunset -> return if (isDark) sunsetDarkPalette.withDarkness(darkness) else sunsetLightPalette
+        ColorSource.CherryBlossom -> return if (isDark) cherryBlossomDarkPalette.withDarkness(darkness) else cherryBlossomLightPalette
+        else -> {}
+    }
+
     val accentColor = accentColorOf(
         source = source,
         isDark = isDark,

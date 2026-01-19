@@ -17,8 +17,8 @@ android {
     compileSdk = 36
 
     val abis = listOf("arm64-v8a", "x86_64")
-    val cmakeVersion = "4.1.2"
-    ndkVersion = "29.0.14206865"
+    val cmakeVersion = "3.22.1"
+    ndkVersion = "27.1.12297006"
 
     defaultConfig {
         applicationId = appId
@@ -65,14 +65,14 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            manifestPlaceholders["appName"] = "ViTune Debug"
+            manifestPlaceholders["appName"] = "Argus"
         }
 
         release {
             versionNameSuffix = "-RELEASE"
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "ViTune"
+            manifestPlaceholders["appName"] = "Argus"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -85,7 +85,7 @@ android {
 
             applicationIdSuffix = ".nightly"
             versionNameSuffix = "-NIGHTLY"
-            manifestPlaceholders["appName"] = "ViTune Nightly"
+            manifestPlaceholders["appName"] = "Argus Nightly"
             signingConfig = signingConfigs.findByName("ci")
         }
     }
@@ -172,7 +172,7 @@ composeCompiler {
 
 chaquopy {
     defaultConfig {
-        version = "3.13"
+        version = "3.11"
         pip {
             install("yt-dlp>=2025.12.8")
             install("yt-dlp-ejs")

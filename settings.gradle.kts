@@ -26,7 +26,7 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
 }
 
-rootProject.name = "vitune"
+rootProject.name = "argus"
 
 include(":app")
 include(":core:data")

@@ -243,6 +243,11 @@ val ColorSource.nameLocalized
             ColorSource.Default -> R.string.color_source_default
             ColorSource.Dynamic -> R.string.color_source_dynamic
             ColorSource.MaterialYou -> R.string.color_source_material_you
+            ColorSource.Floral -> R.string.color_source_floral
+            ColorSource.Ocean -> R.string.color_source_ocean
+            ColorSource.Forest -> R.string.color_source_forest
+            ColorSource.Sunset -> R.string.color_source_sunset
+            ColorSource.CherryBlossom -> R.string.color_source_cherry_blossom
         }
     )
 
